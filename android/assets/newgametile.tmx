@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.5" orientation="orthogonal" renderorder="right-down" width="300" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="56">
+ <tileset firstgid="1" source="tileset_newgame.tsx"/>
+ <layer id="1" name="background" width="300" height="13">
+  <data encoding="base64" compression="zlib">
+   eJztw7ENAAAMAiDT/z928YwukNBLqqqqqqqqqqqqqqqqqqqq+nC6/A8u
+  </data>
+ </layer>
+ <layer id="2" name="graphics" width="300" height="13">
+  <data encoding="base64" compression="zlib">
+   eJzt2LsNgzAQAFBIFwbIEGEPlsjCGSsUaYIE2I4/WHpPOtEc9vksXeFhAAAAAAC2HuPvFwAAAEpaWhcAcMCMAkoKfYfP8V5vngFb72/kzI1Z88x9nX1T4PyLyc2lxJ4tztG7Gj3r4V56qPEfV59Xz7X3c2D/j3Jfifuf/RdTX6gSa6ZK7VttNXp2pXvZ06LGmxBCdBIfhB4Q7A==
+  </data>
+ </layer>
+ <objectgroup id="3" name="ground">
+  <object id="9" x="0" y="193" width="4800" height="15"/>
+ </objectgroup>
+ <objectgroup id="4" name="walls">
+  <object id="16" x="432" y="160.333" width="32" height="30.6667"/>
+  <object id="18" x="608" y="160.25" width="32" height="31.5"/>
+  <object id="22" x="768" y="160.5" width="31.75" height="30.75"/>
+  <object id="26" x="0.5" y="0.5" width="15" height="191.5"/>
+  <object id="27" x="4784.5" y="0.5" width="15.5" height="191"/>
+  <object id="46" x="1072" y="160" width="32" height="32"/>
+  <object id="47" x="1248" y="160" width="32" height="32"/>
+  <object id="48" x="1712" y="160" width="32" height="32"/>
+  <object id="49" x="2048" y="160" width="32" height="32"/>
+  <object id="50" x="3280" y="160" width="32" height="32"/>
+  <object id="51" x="3680" y="160" width="32" height="32"/>
+  <object id="52" x="4336" y="160" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="5" name="greenorbs">
+  <object id="30" x="480" y="63.3333" width="15.3333" height="16.6667"/>
+  <object id="31" x="512" y="63.3333" width="16" height="15.3333"/>
+  <object id="32" x="608.667" y="143.333" width="17.3333" height="16"/>
+  <object id="33" x="768" y="144" width="15.3333" height="16"/>
+ </objectgroup>
+ <objectgroup id="6" name="life">
+  <object id="34" x="913.333" y="128" width="13.3333" height="16"/>
+  <object id="35" x="960" y="111.333" width="16" height="16"/>
+  <object id="36" x="1040.67" y="144.667" width="15.3333" height="15.3333"/>
+ </objectgroup>
+ <objectgroup id="8" name="box">
+  <object id="53" x="1360" y="176" width="16" height="16"/>
+  <object id="54" x="1584" y="176" width="16" height="16">
+   <properties>
+    <property name="shield" value=""/>
+   </properties>
+  </object>
+  <object id="55" x="2608" y="176" width="16" height="16">
+   <properties>
+    <property name="fireball" value=""/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="7" name="monsters">
+  <object id="37" x="528" y="128" width="32" height="64"/>
+  <object id="38" x="1120" y="128" width="32" height="64"/>
+  <object id="39" x="1840" y="129" width="32" height="63"/>
+  <object id="40" x="3520" y="129" width="32" height="63"/>
+  <object id="41" x="4480" y="129" width="32" height="63"/>
+  <object id="45" x="1952" y="128" width="32" height="64"/>
+ </objectgroup>
+</map>
