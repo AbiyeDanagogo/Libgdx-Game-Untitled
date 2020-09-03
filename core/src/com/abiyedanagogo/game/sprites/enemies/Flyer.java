@@ -11,6 +11,9 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
 
+/*
+ * Created by Abiye Danagogo on 23/07/2020
+ * */
 public class Flyer extends Enemy {
 
     private enum State {MOVING, ATTACKING}
