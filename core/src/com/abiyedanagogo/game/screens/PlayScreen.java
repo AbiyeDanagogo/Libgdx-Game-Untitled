@@ -2,7 +2,6 @@ package com.abiyedanagogo.game.screens;
 
 import com.abiyedanagogo.game.items.ExtraFireBall;
 import com.abiyedanagogo.game.sprites.enemies.Enemy;
-import com.abiyedanagogo.game.sprites.enemies.Flyer;
 import com.abiyedanagogo.game.tools.Controller;
 import com.abiyedanagogo.game.NewGame;
 import com.abiyedanagogo.game.sprites.Player;
@@ -33,27 +32,32 @@ import static com.abiyedanagogo.game.NewGame.PPM;
 import static com.abiyedanagogo.game.NewGame.V_HEIGHT;
 import static com.abiyedanagogo.game.NewGame.V_WIDTH;
 
+/*
+* Created by Abiye Danagogo on 29/06/2020
+* */
 public class PlayScreen implements Screen {
-
+    //Reference to our Game, used to set Screens
     private NewGame game;
 
+    //Camera and viewport
     private OrthographicCamera gameCam;
     private Viewport gamePort;
 
-    private Box2DDebugRenderer b2dr;
+    //Box2d variables
     private World world;
-
+    private Box2DDebugRenderer b2dr;
     private B2WorldCreator creator;
+
     private WorldContactListener listener;
 
     private Player player;
     private Controller controller;
     private Hud hud;
 
+    //Tiled map variables
     private TmxMapLoader mapLoader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
-
 
     private Array<Item> items;
     private LinkedBlockingQueue<ItemDef> itemsToSpawn;
@@ -61,41 +65,42 @@ public class PlayScreen implements Screen {
 
     public PlayScreen(NewGame game) {
         this.game = game;
-
-
+        //create camera used to follow the player through the world
         gameCam = new OrthographicCamera();
+        //create a FitViewport to maintain virtual aspect ratio despite screen size
         gamePort = new FitViewport(V_WIDTH / PPM, V_HEIGHT / PPM, gameCam);
         //gamePort = new FitViewport(4000 / PPM, 1000 / PPM, gameCam);
 
-
+        //create our Box2D world, setting no gravity in X, -10 gravity in Y, and allow bodies to sleep
         world = new World(new Vector2(0, -10), true);
+        //allows for debug lines of our box2d world.
         b2dr = new Box2DDebugRenderer();
         //b2dr.setDrawBodies(false);
 
+        //The controller displays an onscreen controller on screen that is used to control the player if played on a mobile device
         controller = new Controller(game.getBatch());
+        //create our game HUD for scores/timers/level info
         hud = new Hud(game.getBatch());
 
+        //Load our map and setup our map renderer
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("newgametile1.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1/ PPM);
 
+        //initially set our gamcam to be centered correctly at the start of of map
         gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
-
+        //This creates most of the sprites and objects into our game world
         creator = new B2WorldCreator(this);
-
+        //create our player into the game world
         player = new Player(this);
 
         listener = new WorldContactListener();
-
         world.setContactListener(listener);
 
         items = new Array<Item>();
         itemsToSpawn = new LinkedBlockingQueue<ItemDef>();
-
     }
-
-
 
     public void spawnItem(ItemDef idef) {
         itemsToSpawn.add(idef);
@@ -119,7 +124,9 @@ public class PlayScreen implements Screen {
 
     }
 
-
+    /*
+    * This method is used to perform actions when an input is received.
+    * */
     public void  handleInput() {
         if (controller.isRightPressed()) {
             if (!player.isPlayerHit())
@@ -237,6 +244,9 @@ public class PlayScreen implements Screen {
 
     }
 
+    /*
+    * Disposes all opened resources
+    * */
     @Override
     public void dispose() {
         //game.batch.dispose();

@@ -20,7 +20,9 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
 import static com.abiyedanagogo.game.NewGame.PPM;
-
+/*
+ * Created by Abiye Danagogo on 30/06/2020
+ * */
 public class B2WorldCreator {
 
     private Array<Monster> monsters;

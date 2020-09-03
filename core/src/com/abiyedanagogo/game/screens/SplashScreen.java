@@ -13,6 +13,9 @@ import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenCallback;
 import aurelienribon.tweenengine.TweenManager;
 
+/*
+ * Created by Abiye Danagogo on 10/08/2020
+ * */
 public class SplashScreen implements Screen {
     private NewGame game;
     private Sprite splash;
@@ -30,6 +33,7 @@ public class SplashScreen implements Screen {
         splash.setSize(500 , 125);
         splash.setPosition((Gdx.graphics.getWidth() - splash.getWidth()) / 2f, Gdx.graphics.getHeight() / 2f);
 
+        //This lets the splash sprite fade in and fade out after 1 second
         Tween.set(splash, SpriteAccessor.ALPHA).target(0).start(tweenManager);
         Tween.to(splash, SpriteAccessor.ALPHA, 1).target(1).repeatYoyo(1, 1).setCallback(new TweenCallback() {
             @Override

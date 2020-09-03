@@ -1,16 +1,16 @@
 package com.abiyedanagogo.game;
 
 import com.abiyedanagogo.game.screens.PlayScreen;
-import com.abiyedanagogo.game.screens.SplashScreen;
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class NewGame extends Game {
+	//Virtual Screen size and Box2D Scale(Pixels per Meter)
+	public static final int V_WIDTH = 400;
+	public static final int V_HEIGHT = 208;
+	public static final float PPM = 100;
 
+	//Box2D Collision Bits
 	public static final short GROUND_BIT = 1;
 	public static final short PLAYER_BIT = 2;
 	public static final short WALL_BIT = 4;
@@ -23,10 +23,6 @@ public class NewGame extends Game {
 	public static final short ITEM_BIT = 512;
 	public static final short FIREBALL_BIT = 1024;
 
-
-	public static final int V_WIDTH = 400;
-	public static final int V_HEIGHT = 208;
-	public static final float PPM = 100;
 	private SpriteBatch batch;
 
 	@Override

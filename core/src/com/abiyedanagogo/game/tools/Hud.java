@@ -17,6 +17,9 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+/*
+ * Created by Abiye Danagogo on 02/07/2020
+ * */
 public class Hud implements Disposable {
     private Stage stage;
     private Viewport viewport;
