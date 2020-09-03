@@ -9,6 +9,9 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Vector2;
 
+/*
+ * Created by Abiye Danagogo on 10/07/2020
+ * */
 public class Box extends InteractiveTileObject {
 
     private static TiledMapTileSet tileSet;

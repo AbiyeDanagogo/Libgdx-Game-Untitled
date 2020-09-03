@@ -9,6 +9,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
 
+/*
+ * Created by Abiye Danagogo on 01/07/2020
+ * */
 public class Life extends InteractiveTileObject {
 
     public Life(PlayScreen screen, MapObject object) {

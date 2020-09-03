@@ -17,6 +17,9 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
+/*
+ * Created by Abiye Danagogo on 29/06/2020
+ * */
 public class Player extends Sprite {
 
     private enum State { FALLING, JUMPING, STANDING, RUNNING, PUNCHING, HIT};

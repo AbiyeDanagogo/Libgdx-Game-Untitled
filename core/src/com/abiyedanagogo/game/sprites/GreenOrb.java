@@ -14,6 +14,9 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import static com.abiyedanagogo.game.NewGame.PPM;
 
+/*
+ * Created by Abiye Danagogo on 01/07/2020
+ * */
 public class GreenOrb extends InteractiveTileObject {
     public GreenOrb(PlayScreen screen, MapObject object) {
         super(screen, object);
