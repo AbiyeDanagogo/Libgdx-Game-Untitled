@@ -49,27 +49,28 @@ public class MainMenuScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         atlas = new TextureAtlas("ui/button.pack");
-        skin = new Skin(atlas);
+        skin = new Skin(Gdx.files.internal("ui/menuSkin.json"),atlas);
+
         table = new Table();
         table.center();
         table.setFillParent(true);
 //        table = new Table(skin);
 //        table.setBounds(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        headingFont = new BitmapFont(Gdx.files.internal("gamefont.fnt"));
-        otherFont = new BitmapFont();
+//        headingFont = new BitmapFont(Gdx.files.internal("gamefont.fnt"));
+//        otherFont = new BitmapFont();
 
-        headingLabel = new Label("DARYL DANGER", new Label.LabelStyle(headingFont, Color.WHITE));
+        headingLabel = new Label("DARYL DANGER", skin);
         headingLabel.setFontScale(0.2f);
 
-        TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
+        /*TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.up = skin.getDrawable("buttonup");
         textButtonStyle.down = skin.getDrawable("buttondown");
         textButtonStyle.pressedOffsetX = 1;
         textButtonStyle.pressedOffsetY = -1;
-        textButtonStyle.font = otherFont;
+        textButtonStyle.font = otherFont;*/
 
-        buttonExit = new TextButton("EXIT", textButtonStyle);
+        buttonExit = new TextButton("EXIT", skin);
         buttonExit.pad(20);
         buttonExit.addListener(new ClickListener(){
             @Override
@@ -78,7 +79,7 @@ public class MainMenuScreen implements Screen {
             }
         });
 
-        buttonPlay = new TextButton("PLAY", textButtonStyle);
+        buttonPlay = new TextButton("PLAY", skin);
         buttonPlay.pad(20);
         buttonPlay.addListener(new ClickListener(){
             @Override

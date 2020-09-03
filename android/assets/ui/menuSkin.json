@@ -1,0 +1,21 @@
+{
+  "com.badlogic.gdx.graphics.Color": {
+    "white": { "r": 1, "g": 1, "b": 1, "a": 1 },
+    "black": { "r": 0, "g": 0, "b": 0, "a": 1 },
+    "red": { "r": 1, "g": 0, "b": 0, "a": 1 },
+    "green": { "r": 0, "g": 1, "b": 0, "a": 1 },
+    "blue": { "r": 0, "g": 0, "b": 1, "a": 1 }
+  },
+  "com.badlogic.gdx.graphics.g2d.BitmapFont": {
+    "white": {"file": "gamefont.fnt"},
+    "black": {"file": "gamefont.fnt"},
+    "new": {"file": "com/badlogic/gdx/utils/arial-15.fnt"}
+  },
+
+  "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
+    "default": {"font": white,  "fontColor": white }
+  },
+  "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
+    "default": { "up": "buttonup", "down": "buttondown", "font": new ,"pressedOffsetX": 1, "pressedOffsetY": -1 }
+  }
+}
