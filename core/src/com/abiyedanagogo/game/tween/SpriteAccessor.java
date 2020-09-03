@@ -3,7 +3,9 @@ package com.abiyedanagogo.game.tween;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import aurelienribon.tweenengine.TweenAccessor;
-
+/*
+ * Created by Abiye Danagogo on 10/08/2020
+ * */
 public class SpriteAccessor implements TweenAccessor<Sprite> {
 
     public static final int ALPHA = 0;

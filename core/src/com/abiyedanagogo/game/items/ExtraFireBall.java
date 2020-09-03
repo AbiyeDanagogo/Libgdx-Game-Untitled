@@ -10,6 +10,9 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
+/*
+ * Created by Abiye Danagogo on 18/07/2020
+ * */
 public class ExtraFireBall extends Item {
 
     private Texture texture;

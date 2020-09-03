@@ -4,6 +4,9 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 import aurelienribon.tweenengine.TweenAccessor;
 
+/*
+ * Created by Abiye Danagogo on 29/08/2020
+ * */
 public class ActorAccessor implements TweenAccessor<Actor> {
 
     public static final int Y = 0;
