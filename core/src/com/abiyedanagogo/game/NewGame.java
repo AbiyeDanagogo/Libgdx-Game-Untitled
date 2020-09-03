@@ -1,6 +1,7 @@
 package com.abiyedanagogo.game;
 
 import com.abiyedanagogo.game.screens.PlayScreen;
+import com.abiyedanagogo.game.screens.SplashScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -28,8 +29,8 @@ public class NewGame extends Game {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		setScreen(new PlayScreen(this));
-//		setScreen(new SplashScreen(this));
+//		setScreen(new PlayScreen(this));
+		setScreen(new SplashScreen(this));
 	}
 
 	@Override
