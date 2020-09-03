@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import aurelienribon.tweenengine.Timeline;
@@ -36,14 +37,12 @@ public class MainMenuScreen implements Screen {
     private Table table;
     private TextButton buttonExit, buttonPlay;
     private Label headingLabel;
-    private BitmapFont headingFont, otherFont;
     private TweenManager tweenManager;
 
     private Viewport viewport;
 
     public MainMenuScreen(final NewGame game) {
         this.game = game;
-
         viewport =  new FitViewport(NewGame.V_WIDTH , NewGame.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, game.getBatch());
         Gdx.input.setInputProcessor(stage);
@@ -51,34 +50,11 @@ public class MainMenuScreen implements Screen {
         atlas = new TextureAtlas("ui/button.pack");
         skin = new Skin(Gdx.files.internal("ui/menuSkin.json"),atlas);
 
-        table = new Table();
-        table.center();
-        table.setFillParent(true);
-//        table = new Table(skin);
-//        table.setBounds(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
-//        headingFont = new BitmapFont(Gdx.files.internal("gamefont.fnt"));
-//        otherFont = new BitmapFont();
-
+        //The heading
         headingLabel = new Label("DARYL DANGER", skin);
         headingLabel.setFontScale(0.2f);
 
-        /*TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
-        textButtonStyle.up = skin.getDrawable("buttonup");
-        textButtonStyle.down = skin.getDrawable("buttondown");
-        textButtonStyle.pressedOffsetX = 1;
-        textButtonStyle.pressedOffsetY = -1;
-        textButtonStyle.font = otherFont;*/
-
-        buttonExit = new TextButton("EXIT", skin);
-        buttonExit.pad(20);
-        buttonExit.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.exit();
-            }
-        });
-
+        //The Play button
         buttonPlay = new TextButton("PLAY", skin);
         buttonPlay.pad(20);
         buttonPlay.addListener(new ClickListener(){
@@ -88,8 +64,22 @@ public class MainMenuScreen implements Screen {
             }
         });
 
+        //The exit button
+        buttonExit = new TextButton("EXIT", skin);
+        buttonExit.pad(20);
+        buttonExit.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.exit();
+            }
+        });
 
+        //The table is initialised
+        table = new Table();
+        table.center();
+        table.setFillParent(true);
 
+        //The properties i.e the heading, play button and exit button are placed unto the table
         table.add(headingLabel);
         table.row();
         table.add(buttonPlay).size(648/12f, 213/12f);
@@ -168,8 +158,6 @@ public class MainMenuScreen implements Screen {
         stage.dispose();
         atlas.dispose();
         skin.dispose();
-        headingFont.dispose();
-        otherFont.dispose();
     }
 
 }
