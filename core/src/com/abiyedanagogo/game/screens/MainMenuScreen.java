@@ -38,7 +38,6 @@ public class MainMenuScreen implements Screen {
     private TextButton buttonExit, buttonPlay;
     private Label headingLabel;
     private TweenManager tweenManager;
-
     private Viewport viewport;
 
     public MainMenuScreen(final NewGame game) {
