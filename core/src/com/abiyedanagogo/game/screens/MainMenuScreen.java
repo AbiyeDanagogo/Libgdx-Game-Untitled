@@ -74,6 +74,9 @@ public class MainMenuScreen implements Screen {
             }
         });
 
+        //Constant used to scale size of buttons
+        final float BUTTON_SCALE = 12f;
+
         //The table is initialised
         table = new Table();
         table.center();
@@ -82,9 +85,9 @@ public class MainMenuScreen implements Screen {
         //The properties i.e the heading, play button and exit button are placed unto the table
         table.add(headingLabel);
         table.row();
-        table.add(buttonPlay).size(648/12f, 213/12f);
+        table.add(buttonPlay).size(buttonPlay.getWidth()/ BUTTON_SCALE, buttonPlay.getHeight()/ BUTTON_SCALE);
         table.row();
-        table.add(buttonExit).size(648/12f, 213/12f);
+        table.add(buttonExit).size(buttonExit.getWidth()/ BUTTON_SCALE, buttonExit.getHeight()/ BUTTON_SCALE);
 //        table.debug();
         stage.addActor(table);
 
