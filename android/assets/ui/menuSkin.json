@@ -17,5 +17,12 @@
 
   "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
     "default": { "up": "buttonup", "down": "buttondown", "font": "otherfont" ,"pressedOffsetX": 1, "pressedOffsetY": -1 }
+  },
+
+  "com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle": {
+    "default": {"font": "otherfont", "fontColorUnselected": "white", "fontColorSelected": "black", "selection": "buttondown"}
+  },
+  "com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle": {
+    "default": {"hScrollKnob": "buttonup", "vScrollKnob": "buttonup"}
   }
 }

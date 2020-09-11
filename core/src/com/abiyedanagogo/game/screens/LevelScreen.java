@@ -32,14 +32,16 @@ public class LevelScreen implements Screen {
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
-        atlas = new TextureAtlas("ui/button.pack");
+        atlas = new TextureAtlas("ui/atlas.pack");
         skin = new Skin(Gdx.files.internal("ui/menuSkin.json"), atlas);
+        skin.getFont("headingfont").getData().setScale(0.2f);
 
         table = new Table(skin);
+        table.setBounds(0,0,Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         table.debug();
 
         list = new List(skin);
-        //list.setItems(new String[] {"one", "two", "three", "and"});
+        list.setItems(new String[] {"one", "two", "three", "and"});
         scrollPane = new ScrollPane(list, skin);
 
         play = new TextButton("PLAY", skin);
@@ -49,7 +51,12 @@ public class LevelScreen implements Screen {
         back.pad(10);
 
         //Putting table together
-        table.add("SELECT LEVEL");
+        table.add("SELECT LEVEL").row();
+        table.add(scrollPane);
+        table.add(play).size(play.getWidth()/ 12f, play.getHeight()/ 12f);
+        table.add(back).size(back.getWidth()/ 12f, back.getHeight()/ 12f);
+
+        stage.addActor(table);
     }
 
     @Override
