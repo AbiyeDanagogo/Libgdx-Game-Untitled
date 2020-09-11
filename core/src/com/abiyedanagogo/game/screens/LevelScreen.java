@@ -51,7 +51,9 @@ public class LevelScreen implements Screen {
         back.pad(10);
 
         //Putting table together
-        table.add("SELECT LEVEL").row();
+        table.add().width(table.getWidth() / 3f);
+        table.add("SELECT LEVEL").width(table.getWidth() / 3f);
+        table.add().width(table.getWidth() / 3f).row();
         table.add(scrollPane);
         table.add(play).size(play.getWidth()/ 12f, play.getHeight()/ 12f);
         table.add(back).size(back.getWidth()/ 12f, back.getHeight()/ 12f);
