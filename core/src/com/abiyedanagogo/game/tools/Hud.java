@@ -7,9 +7,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
@@ -24,6 +26,9 @@ public class Hud implements Disposable {
     private Stage stage;
     private Viewport viewport;
 
+    private TextureAtlas atlas;
+    private Skin skin;
+
     private Integer lifeCount;
     private Integer scoreCount;
 
@@ -33,14 +38,12 @@ public class Hud implements Disposable {
     private Label pauseLabel;
     private Label fireballCountLabel;
 
-    private BitmapFont font, font2;
-
     public Hud(SpriteBatch sb) {
-        font = new BitmapFont(Gdx.files.internal("gamefont.fnt"));
-        font.getData().setScale(0.3f);
 
-        font2 = new BitmapFont(Gdx.files.internal("gamefont.fnt"));
-        font2.getData().setScale(0.15f);
+        atlas = new TextureAtlas("ui/atlas.pack");
+        skin = new Skin(Gdx.files.internal("ui/menuSkin.json"),atlas);
+        skin.getFont("headingfont").getData().setScale(0.3f);
+        skin.getFont("otherfont").getData().setScale(0.15f);
 
         lifeCount = 4;
         scoreCount = 0;
@@ -52,14 +55,16 @@ public class Hud implements Disposable {
         table.top();
         table.setFillParent(true);
 
-        scoreLabel = new Label("SCORE", new Label.LabelStyle(font, Color.WHITE));
-        scoreCountLabel = new Label(String.valueOf(scoreCount), new Label.LabelStyle(font2, Color.WHITE));
-        lifeCountLabel = new Label("" + lifeCount, new Label.LabelStyle(font2, Color.WHITE));
-        lifeCountLabel.setAlignment(Align.bottom);
-        pauseLabel = new Label("||", new Label.LabelStyle(font2, Color.WHITE));
+        scoreLabel = new Label("SCORE", skin);
+        scoreCountLabel = new Label(String.valueOf(scoreCount), skin, "other");
 
-        fireballCountLabel = new Label(String.valueOf(lifeCount), new Label.LabelStyle(font2, Color.WHITE));
+        lifeCountLabel = new Label("" + lifeCount, skin, "other");
+        lifeCountLabel.setAlignment(Align.bottom);
+
+        fireballCountLabel = new Label(String.valueOf(lifeCount), skin, "other");
         fireballCountLabel.setAlignment(Align.bottom);
+
+        pauseLabel = new Label("||", skin, "other");
 
         Image heartIcon = new Image(new Texture("hearticon.png"));
         heartIcon.setSize(44.1f, 40);
@@ -115,7 +120,7 @@ public class Hud implements Disposable {
     @Override
     public void dispose() {
         stage.dispose();
-        font.dispose();
-        font2.dispose();
+        atlas.dispose();
+        skin.dispose();
     }
 }

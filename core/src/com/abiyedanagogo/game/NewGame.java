@@ -29,8 +29,8 @@ public class NewGame extends Game {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-//		setScreen(new PlayScreen(this));
-		setScreen(new SplashScreen(this));
+		setScreen(new PlayScreen(this));
+//		setScreen(new SplashScreen(this));
 	}
 
 	@Override
