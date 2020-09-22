@@ -5,6 +5,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -44,10 +45,13 @@ public class LevelScreen implements Screen {
         table.debug();
 
         List<String> list = new List<>(skin);
-        String[] myArray = {"one", "two", "thrgddddddddddddddgfggghjjjkjkkkhee", "and", "so", "on", "two", "three", "and", "so", "on", "two", "three", "and", "so", "on", "two", "three", "and", "so", "on", "two", "three", "and", "so", "on"};
+        String[] myArray = {"one", "two", "three but very very very very very very long", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "qwerty", "asdfg", "zxcv", "mnbv", "wertyu", "zxcv", "alp", "mango", "jojo", "killerqueen", "kingcrimson"};
         list.setItems(myArray);
 
+
+
         scrollPane = new ScrollPane(list, skin);
+
 
         play = new TextButton("PLAY", skin);
         play.pad(15);
