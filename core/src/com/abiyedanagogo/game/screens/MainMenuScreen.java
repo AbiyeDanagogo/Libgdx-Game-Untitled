@@ -46,7 +46,7 @@ public class MainMenuScreen implements Screen {
         stage = new Stage(viewport, game.getBatch());
         Gdx.input.setInputProcessor(stage);
 
-        atlas = new TextureAtlas("ui/button.pack");
+        atlas = new TextureAtlas("ui/atlas.pack");
         skin = new Skin(Gdx.files.internal("ui/menuSkin.json"),atlas);
 
         //The heading
