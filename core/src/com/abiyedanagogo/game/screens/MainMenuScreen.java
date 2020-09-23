@@ -34,9 +34,6 @@ public class MainMenuScreen implements Screen {
     private TextureAtlas atlas;
     private Stage stage;
     private Skin skin;
-    private Table table;
-    private TextButton buttonExit, buttonPlay;
-    private Label headingLabel;
     private TweenManager tweenManager;
     private Viewport viewport;
 
@@ -50,12 +47,12 @@ public class MainMenuScreen implements Screen {
         skin = new Skin(Gdx.files.internal("ui/menuSkin.json"),atlas);
 
         //The heading
-        headingLabel = new Label("DARYL DANGER", skin);
+        Label headingLabel = new Label("DARYL DANGER", skin);
         headingLabel.setFontScale(0.2f);
 
         //The Play button
-        buttonPlay = new TextButton("PLAY", skin);
-        buttonPlay.pad(20);
+        TextButton buttonPlay = new TextButton("PLAY", skin);
+        buttonPlay.pad(15);
         buttonPlay.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -64,8 +61,8 @@ public class MainMenuScreen implements Screen {
         });
 
         //The exit button
-        buttonExit = new TextButton("EXIT", skin);
-        buttonExit.pad(20);
+        TextButton buttonExit = new TextButton("EXIT", skin);
+        buttonExit.pad(15);
         buttonExit.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -77,7 +74,7 @@ public class MainMenuScreen implements Screen {
         final float BUTTON_SCALE = 12f;
 
         //The table is initialised
-        table = new Table();
+        Table table = new Table(skin);
         table.center();
         table.setFillParent(true);
 
@@ -87,7 +84,7 @@ public class MainMenuScreen implements Screen {
         table.add(buttonPlay).size(buttonPlay.getWidth()/ BUTTON_SCALE, buttonPlay.getHeight()/ BUTTON_SCALE);
         table.row();
         table.add(buttonExit).size(buttonExit.getWidth()/ BUTTON_SCALE, buttonExit.getHeight()/ BUTTON_SCALE);
-//        table.debug();
+        table.debug();
         stage.addActor(table);
 
         // TweenManager for animations
