@@ -42,6 +42,7 @@ public class SplashScreen implements Screen {
             }
         }).start(tweenManager);
 
+        tweenManager.update(Float.MIN_VALUE);
     }
     @Override
     public void show() {
@@ -54,11 +55,10 @@ public class SplashScreen implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        tweenManager.update(delta);
-
         game.getBatch().begin();
         splash.draw(game.getBatch());
         game.getBatch().end();
+        tweenManager.update(delta);
     }
 
     @Override
@@ -78,6 +78,7 @@ public class SplashScreen implements Screen {
 
     @Override
     public void hide() {
+        dispose();
 
     }
 

@@ -117,6 +117,7 @@ public class MainMenuScreen implements Screen {
         //table fade in
         Tween.from(table, ActorAccessor.ALPHA, 0.5f).target(0).start(tweenManager);
         Tween.from(table, ActorAccessor.Y, 0.5f).target(Gdx.graphics.getHeight() / 8f).start(tweenManager);
+        tweenManager.update(Gdx.graphics.getDeltaTime());
     }
 
     @Override
@@ -129,10 +130,11 @@ public class MainMenuScreen implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        tweenManager.update(delta);
+
 
         stage.act(delta);
         stage.draw();
+        tweenManager.update(delta);
     }
 
     @Override
@@ -152,7 +154,7 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void hide() {
-
+        dispose();
     }
 
     @Override

@@ -214,7 +214,10 @@ public class PlayScreen implements Screen {
         for (Item item : items)
             item.draw(game.getBatch());
 
+
         game.getBatch().end();
+
+
 
         game.getBatch().setProjectionMatrix(controller.getStage().getCamera().combined);
         //controller.draw();
