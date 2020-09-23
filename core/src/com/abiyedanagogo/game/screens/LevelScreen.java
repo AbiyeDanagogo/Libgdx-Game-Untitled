@@ -4,8 +4,11 @@ import com.abiyedanagogo.game.NewGame;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -42,18 +45,18 @@ public class LevelScreen implements Screen {
         skin.getFont("otherfont").getData().setScale(0.08f);
         skin.getFont("systemfont").getData().setScale(0.8f);
 
+        //The list of items in the scroll pane is declared and initialised.
         List<String> list = new List<>(skin);
-        String[] myArray = {"first", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "qwerty", "asdfg", "mnbv", "wertyu", "zxcv", "alp", "mango", "jojo", "killerqueen", "kingcrimson"};
-        list.setItems(myArray);
+        list.setItems("first", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "qwerty", "asdfg", "mnbv", "wertyu", "zxcv", "alp", "mango", "jojo", "killerqueen", "kingcrimson");
 
-
+        //The scroll pane is declared and initialised.
         ScrollPane scrollPane = new ScrollPane(list, skin);
 
-        Label selectLevelLabel = new Label("SELECT LEVEL", skin);
-
+        //The play button is declared and initialised.
         TextButton buttonPlay = new TextButton("PLAY", skin);
         buttonPlay.pad(15);
 
+        //The back button is declared and initialised.
         TextButton buttonBack = new TextButton("BACK", skin);
         buttonBack.addListener(new ClickListener() {
             @Override
@@ -61,33 +64,28 @@ public class LevelScreen implements Screen {
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenuScreen(game));
             }
         });
-        buttonBack.pad(10);
+        buttonBack.pad(15);
 
+        //The table that will hold the labels, buttons and scroll pane is declared and initialised
         Table table = new Table(skin);
-        table.setBounds(0,0,NewGame.V_WIDTH, NewGame.V_HEIGHT);
+        table.setBounds(0,0, NewGame.V_WIDTH, NewGame.V_HEIGHT);
         table.debug();
 
+        //This constant is used for scaling the size of the buttons.
         final float BUTTON_SCALE = 8f;
 
-        //Putting table together
-//        table.add().width(table.getWidth() / 3f);
-//        table.add(selectLevelLabel).width(table.getWidth() / 3f).right();
-//        table.add().width(table.getWidth() / 3f);
-
+        //Putting the items in the table
         table.add().width(table.getWidth() / 3f);
         table.add().width(table.getWidth() / 3f);
         table.add().width(table.getWidth() / 3f);
         table.row();
 
-//        table.add();
-        table.add(selectLevelLabel).colspan(3);
-//        table.add();
+        table.add("SELECT LEVEL").colspan(3);
         table.row();
 
-        table.add(scrollPane);
+        table.add(scrollPane).expandY().left().top();
         table.add(buttonPlay).size(buttonPlay.getWidth()/ BUTTON_SCALE, buttonPlay.getHeight()/ BUTTON_SCALE);
         table.add(buttonBack).size(buttonBack.getWidth()/ BUTTON_SCALE, buttonBack.getHeight()/ BUTTON_SCALE).bottom().right();
-
 
         stage.addActor(table);
     }

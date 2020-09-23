@@ -45,12 +45,12 @@ public class MainMenuScreen implements Screen {
 
         atlas = new TextureAtlas("ui/atlas.pack");
         skin = new Skin(Gdx.files.internal("ui/menuSkin.json"),atlas);
+        skin.getFont("headingfont").getData().setScale(0.2f);
 
-        //The heading
+        //The heading is declared and initialised.
         Label headingLabel = new Label("DARYL DANGER", skin);
-        headingLabel.setFontScale(0.2f);
 
-        //The Play button
+        //The play button is declared and initialised.
         TextButton buttonPlay = new TextButton("PLAY", skin);
         buttonPlay.pad(15);
         buttonPlay.addListener(new ClickListener(){
@@ -60,7 +60,7 @@ public class MainMenuScreen implements Screen {
             }
         });
 
-        //The exit button
+        //The exit button is declared and initialised.
         TextButton buttonExit = new TextButton("EXIT", skin);
         buttonExit.pad(15);
         buttonExit.addListener(new ClickListener(){
@@ -70,16 +70,13 @@ public class MainMenuScreen implements Screen {
             }
         });
 
-        //Constant used to scale size of buttons
-        final float BUTTON_SCALE = 12f;
+        //This constant is used for scaling the size of the buttons.
+        final float BUTTON_SCALE = 8f;
 
-        //The table is initialised
-//        Table table = new Table(skin);
-//        table.center();
-//        table.setFillParent(true);
+        //The table is declared and initialised.
         Table table = new Table(skin);
-        table.setBounds(0,0,NewGame.V_WIDTH, NewGame.V_HEIGHT);
-
+        table.setBounds(0,0, NewGame.V_WIDTH,  NewGame.V_HEIGHT);
+//        table.top();
 
         //The properties i.e the heading, play button and exit button are placed unto the table
         table.add(headingLabel);
@@ -129,8 +126,6 @@ public class MainMenuScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-
 
         stage.act(delta);
         stage.draw();
