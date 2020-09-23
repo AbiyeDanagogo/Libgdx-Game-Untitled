@@ -24,7 +24,7 @@
   },
 
   "com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle": {
-    "default": {"font": "systemfont", "fontColorUnselected": "white", "fontColorSelected": "black", "selection": "greybutton"}
+    "default": {"font": "otherfont", "fontColorUnselected": "white", "fontColorSelected": "black", "selection": "greybutton"}
   },
   "com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle": {
     "default": {"hScrollKnob": "greybutton", "vScrollKnob": "greybutton"}

@@ -74,9 +74,12 @@ public class MainMenuScreen implements Screen {
         final float BUTTON_SCALE = 12f;
 
         //The table is initialised
+//        Table table = new Table(skin);
+//        table.center();
+//        table.setFillParent(true);
         Table table = new Table(skin);
-        table.center();
-        table.setFillParent(true);
+        table.setBounds(0,0,NewGame.V_WIDTH, NewGame.V_HEIGHT);
+
 
         //The properties i.e the heading, play button and exit button are placed unto the table
         table.add(headingLabel);
@@ -84,7 +87,7 @@ public class MainMenuScreen implements Screen {
         table.add(buttonPlay).size(buttonPlay.getWidth()/ BUTTON_SCALE, buttonPlay.getHeight()/ BUTTON_SCALE);
         table.row();
         table.add(buttonExit).size(buttonExit.getWidth()/ BUTTON_SCALE, buttonExit.getHeight()/ BUTTON_SCALE);
-        table.debug();
+//        table.debug();
         stage.addActor(table);
 
         // TweenManager for animations
