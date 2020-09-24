@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class NewGame extends Game {
 	//Virtual Screen size and Box2D Scale(Pixels per Meter)
 	public static final int V_WIDTH = 400;
-	public static final int V_HEIGHT = 208;
+	public static final int V_HEIGHT = 200;
 	public static final float PPM = 100;
 
 	//Box2D Collision Bits
@@ -29,8 +29,8 @@ public class NewGame extends Game {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-//		setScreen(new PlayScreen(this));
-		setScreen(new SplashScreen(this));
+		setScreen(new PlayScreen(this));
+//		setScreen(new SplashScreen(this));
 	}
 
 	@Override
