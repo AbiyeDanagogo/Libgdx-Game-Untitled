@@ -23,7 +23,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.concurrent.LinkedBlockingQueue;
@@ -69,13 +73,13 @@ public class PlayScreen implements Screen {
         gameCam = new OrthographicCamera();
         //create a FitViewport to maintain virtual aspect ratio despite screen size
         gamePort = new FitViewport(V_WIDTH / PPM, V_HEIGHT / PPM, gameCam);
+
         //gamePort = new FitViewport(4000 / PPM, 1000 / PPM, gameCam);
 
         //create our Box2D world, setting no gravity in X, -10 gravity in Y, and allow bodies to sleep
         world = new World(new Vector2(0, -10), true);
         //allows for debug lines of our box2d world.
         b2dr = new Box2DDebugRenderer();
-        //b2dr.setDrawBodies(false);
 
         //The controller displays an onscreen controller on screen that is used to control the player if played on a mobile device
         controller = new Controller(game.getBatch());
@@ -187,7 +191,7 @@ public class PlayScreen implements Screen {
 
         gameCam.position.y = gamePort.getWorldHeight() / 2 ;
         gameCam.position.x = player.getB2body().getPosition().x;
-        //gameCam.position.x = player.b2body.getPosition().x - 140 / PPM;
+//        gameCam.position.x = player.getB2body().getPosition().x + 140 / PPM;
         gameCam.update();
         renderer.setView(gameCam);
 
@@ -200,7 +204,9 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClearColor(1,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        //The variable renderer is of class OrthogonalTiledMapRenderer and the render method displays the images on the map
         renderer.render();
+        //This displays the render lines
         b2dr.render(world, gameCam.combined);
 
         game.getBatch().setProjectionMatrix(gameCam.combined);
@@ -214,13 +220,10 @@ public class PlayScreen implements Screen {
         for (Item item : items)
             item.draw(game.getBatch());
 
-
         game.getBatch().end();
 
-
-
         game.getBatch().setProjectionMatrix(controller.getStage().getCamera().combined);
-        //controller.draw();
+        controller.draw();
 
         game.getBatch().setProjectionMatrix(hud.getStage().getCamera().combined);
         hud.getStage().draw();

@@ -1,6 +1,7 @@
 package com.abiyedanagogo.game.tools;
 
 
+import com.abiyedanagogo.game.NewGame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -29,8 +30,7 @@ public class Controller implements Disposable {
 
     public Controller(SpriteBatch batch) {
         cam = new OrthographicCamera();
-        viewport = new FitViewport(800, 480, cam);
-        //viewport = new FitViewport(NewGame.V_WIDTH , NewGame.V_HEIGHT, cam);
+        viewport = new FitViewport(NewGame.V_WIDTH * 2.5f , NewGame.V_HEIGHT * 2.5f, cam);
         stage = new Stage(viewport, batch);
 
         inAir = false;
