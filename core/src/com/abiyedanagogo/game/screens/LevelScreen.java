@@ -69,23 +69,20 @@ public class LevelScreen implements Screen {
         //The table that will hold the labels, buttons and scroll pane is declared and initialised
         Table table = new Table(skin);
         table.setBounds(0,0, NewGame.V_WIDTH, NewGame.V_HEIGHT);
+        table.setFillParent(true);
         table.debug();
 
         //This constant is used for scaling the size of the buttons.
         final float BUTTON_SCALE = 8f;
 
-        //Putting the items in the table
-        table.add().width(table.getWidth() / 3f);
-        table.add().width(table.getWidth() / 3f);
-        table.add().width(table.getWidth() / 3f);
-        table.row();
-
+        //The heading with the title SELECT LEVEL is put first into the table.
         table.add("SELECT LEVEL").colspan(3);
+        //A new row is created
         table.row();
-
-        table.add(scrollPane).expandY().left().top();
-        table.add(buttonPlay).size(buttonPlay.getWidth()/ BUTTON_SCALE, buttonPlay.getHeight()/ BUTTON_SCALE);
-        table.add(buttonBack).size(buttonBack.getWidth()/ BUTTON_SCALE, buttonBack.getHeight()/ BUTTON_SCALE).bottom().right();
+        //The remaining items are added into the table.
+        table.add(scrollPane).expandY().uniformX().left().top();
+        table.add(buttonPlay).size(buttonPlay.getWidth()/ BUTTON_SCALE, buttonPlay.getHeight()/ BUTTON_SCALE).uniformX();
+        table.add(buttonBack).size(buttonBack.getWidth()/ BUTTON_SCALE, buttonBack.getHeight()/ BUTTON_SCALE).bottom().right().uniformX();
 
         stage.addActor(table);
     }

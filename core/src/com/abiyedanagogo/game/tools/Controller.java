@@ -22,15 +22,13 @@ public class Controller implements Disposable {
     private Viewport viewport;
     private Stage stage;
     private boolean upPressed, downPressed, leftPressed, rightPressed;
-    private OrthographicCamera cam;
 
     private boolean inAir;
 
 
 
     public Controller(SpriteBatch batch) {
-        cam = new OrthographicCamera();
-        viewport = new FitViewport(NewGame.V_WIDTH * 2.5f , NewGame.V_HEIGHT * 2.5f, cam);
+        viewport = new FitViewport(NewGame.V_WIDTH * 2.5f , NewGame.V_HEIGHT * 2.5f, new OrthographicCamera());
         stage = new Stage(viewport, batch);
 
         inAir = false;
