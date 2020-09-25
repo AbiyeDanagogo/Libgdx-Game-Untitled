@@ -5,8 +5,11 @@ import com.abiyedanagogo.game.tween.SpriteAccessor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 import aurelienribon.tweenengine.BaseTween;
 import aurelienribon.tweenengine.Tween;
@@ -20,9 +23,11 @@ public class SplashScreen implements Screen {
     private NewGame game;
     private Sprite splash;
     private TweenManager tweenManager;
+    Viewport viewport;
 
     public SplashScreen(final NewGame game) {
         this.game = game;
+        viewport =  new FitViewport(NewGame.V_WIDTH , NewGame.V_HEIGHT, new OrthographicCamera());
 
         tweenManager = new TweenManager();
         Tween.registerAccessor(Sprite.class, new SpriteAccessor());
@@ -35,7 +40,7 @@ public class SplashScreen implements Screen {
 
         //This lets the splash sprite fade in and fade out after 1 second
         Tween.set(splash, SpriteAccessor.ALPHA).target(0).start(tweenManager);
-        Tween.to(splash, SpriteAccessor.ALPHA, 1).target(1).repeatYoyo(1, 1).setCallback(new TweenCallback() {
+        Tween.to(splash, SpriteAccessor.ALPHA, 1).target(1).repeatYoyo(1, 100).setCallback(new TweenCallback() {
             @Override
             public void onEvent(int type, BaseTween<?> source) {
                 game.setScreen(new MainMenuScreen(game));
@@ -63,7 +68,7 @@ public class SplashScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        viewport.update(width, height);
     }
 
     @Override
