@@ -46,14 +46,20 @@ public class LevelScreen implements Screen {
         skin.getFont("systemfont").getData().setScale(0.8f);
 
         //The list of items in the scroll pane is declared and initialised.
-        List<String> list = new List<>(skin);
+        final List<String> list = new List<>(skin);
         list.setItems("first", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "qwerty", "asdfg", "mnbv", "wertyu", "zxcv", "alp", "mango", "jojo", "killerqueen", "kingcrimson");
 
         //The scroll pane is declared and initialised.
-        ScrollPane scrollPane = new ScrollPane(list, skin);
+        final ScrollPane scrollPane = new ScrollPane(list, skin);
 
         //The play button is declared and initialised.
         TextButton buttonPlay = new TextButton("PLAY", skin);
+        buttonPlay.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new PlayScreen(game));
+            }
+        });
         buttonPlay.pad(15);
 
         //The back button is declared and initialised.
