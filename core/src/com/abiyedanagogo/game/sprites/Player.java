@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -40,6 +41,7 @@ public class Player extends Sprite {
 
     private TextureRegion playerStand;
     private Texture texture;
+    private TextureAtlas atlas;
 
     private float stateTime;
 
@@ -72,12 +74,13 @@ public class Player extends Sprite {
         hitSpeed = 2;
 
         texture = new Texture("player.png");
+        atlas = new TextureAtlas("sprites/player.pack");
 
         playerStand = new TextureRegion(texture, 0,0, 320, 320);
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
         for (int i = 1; i < 5; i++) {
-            frames.add(new TextureRegion(texture, i * 320, 0, 320, 320));
+            frames.add(new TextureRegion(atlas.findRegion("running"), i * 320, 0, 320, 320));
         }
         playerRun = new Animation<TextureRegion>(0.1f, frames);
         frames.clear();
