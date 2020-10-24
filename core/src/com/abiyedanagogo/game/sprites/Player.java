@@ -79,8 +79,8 @@ public class Player extends Sprite {
         playerStand = new TextureRegion(texture, 0,0, 320, 320);
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
-        for (int i = 1; i < 5; i++) {
-            frames.add(new TextureRegion(atlas.findRegion("running"), i * 320, 0, 320, 320));
+        for (int i = 0; i < 11; i++) {
+            frames.add(new TextureRegion(atlas.findRegion("running"), i * 363, 0, 363, 458));
         }
         playerRun = new Animation<TextureRegion>(0.1f, frames);
         frames.clear();
