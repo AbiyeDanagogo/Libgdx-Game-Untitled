@@ -4,7 +4,6 @@ import com.abiyedanagogo.game.NewGame;
 import com.abiyedanagogo.game.screens.PlayScreen;
 import com.abiyedanagogo.game.sprites.enemies.Enemy;
 import com.abiyedanagogo.game.tools.Hud;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -23,7 +22,7 @@ import com.badlogic.gdx.utils.Array;
  * */
 public class Player extends Sprite {
 
-    private enum State { FALLING, JUMPING, STANDING, RUNNING, PUNCHING, HIT};
+    private enum State { FALLING, JUMPING, STANDING, RUNNING, ATTACKING, HIT};
     private State currentState;
     private State previousState;
 
@@ -44,8 +43,8 @@ public class Player extends Sprite {
 
     private float stateTime;
 
-    private boolean playerPunching;
-    private boolean finishPunch;
+    private boolean playerAttacking;
+    private boolean finishAttack;
 
     private boolean playerHit;
 
@@ -65,8 +64,8 @@ public class Player extends Sprite {
         stateTime = 0;
         runningRight = true;
 
-        playerPunching = false;
-        finishPunch = false;
+        playerAttacking = false;
+        finishAttack = false;
 
         playerHit = false;
 
@@ -74,35 +73,35 @@ public class Player extends Sprite {
 
         atlas = new TextureAtlas("sprites/player.pack");
 
-        playerStand = new TextureRegion(atlas.findRegion("attacking"), 0,0, 536, 495);
+        playerStand = new TextureRegion(atlas.findRegion("attack"), 0,0, 540, 540);
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
         for (int i = 0; i < 10; i++) {
-            frames.add(new TextureRegion(atlas.findRegion("running"), i * 363, 0, 363, 458));
+            frames.add(new TextureRegion(atlas.findRegion("run"), i * 540, 0, 540, 540));
         }
-        playerRun = new Animation<TextureRegion>(0.1f, frames);
+        playerRun = new Animation<TextureRegion>(0.05f, frames);
         frames.clear();
 
         for (int i = 0; i < 10; i++) {
-            frames.add(new TextureRegion(atlas.findRegion("jumping"), i * 362, 0, 362, 483));
+            frames.add(new TextureRegion(atlas.findRegion("jump"), i * 540, 0, 540, 540));
         }
         playerJump = new Animation<TextureRegion>(0.1f, frames);
         frames.clear();
 
 
         for (int i = 1; i < 10; i++) {
-            frames.add(new TextureRegion(atlas.findRegion("attacking"), i * 536, 0, 536, 495));
+            frames.add(new TextureRegion(atlas.findRegion("attack"), i * 540, 0, 540, 540));
         }
-        playerAttackAnimation = new Animation<TextureRegion>(0.1f, frames);
+        playerAttackAnimation = new Animation<TextureRegion>(0.02f, frames);
         frames.clear();
 
         for (int i = 1; i < 3; i++) {
-            frames.add(new TextureRegion(atlas.findRegion("dying"), i * 482, 0, 482, 498));
+            frames.add(new TextureRegion(atlas.findRegion("die"), i * 540, 0, 540, 540));
         }
         playerHitAnimation = new Animation<TextureRegion>(0.5f, frames);
 
 
-        setBounds(0, 0, 72 / NewGame.PPM, 72 / NewGame.PPM);
+        setBounds(0, 0, 70 / NewGame.PPM, 70 / NewGame.PPM);
         setRegion(playerStand);
 
 
@@ -121,11 +120,11 @@ public class Player extends Sprite {
             setPosition((b2body.getPosition().x - getWidth() / 2) - 10 / NewGame.PPM, (b2body.getPosition().y - getHeight() / 2));
         setRegion(getFrame(dt));
 
-        if (playerPunching) {
-            punch();
+        if (playerAttacking) {
+            attack();
         }
 
-        if (finishPunch && stateTime > 0.6f) {
+        if (finishAttack && stateTime > 0.6f) {
             redefinePlayer();
         }
 
@@ -149,7 +148,7 @@ public class Player extends Sprite {
         TextureRegion region;
 
         switch (currentState) {
-            case PUNCHING:
+            case ATTACKING:
                 region = playerAttackAnimation.getKeyFrame(stateTime);
                 break;
             case JUMPING:
@@ -187,8 +186,8 @@ public class Player extends Sprite {
 
         if (playerHit)
             return State.HIT;
-        else if (playerPunching)
-            return State.PUNCHING;
+        else if (playerAttacking)
+            return State.ATTACKING;
         else if (b2body.getLinearVelocity().y > 0 || (b2body.getLinearVelocity().y < 0 && previousState == State.JUMPING))
             return State.JUMPING;
         else if (b2body.getLinearVelocity().y < 0)
@@ -229,7 +228,7 @@ public class Player extends Sprite {
 
     }
 
-    public void punch() {
+    public void attack() {
         Vector2 currentPosition = b2body.getPosition();
         world.destroyBody(b2body);
 
@@ -262,7 +261,7 @@ public class Player extends Sprite {
 
         fist.set(vertice);
 
-        fdef.filter.categoryBits = NewGame.PUNCH_BIT;
+        fdef.filter.categoryBits = NewGame.ATTACK_BIT;
         fdef.filter.maskBits = NewGame.GROUND_BIT |
                 NewGame.LIFE_BIT |
                 NewGame.GREEN_ORB_BIT |
@@ -273,7 +272,7 @@ public class Player extends Sprite {
         fdef.shape = fist;
         b2body.createFixture(fdef).setUserData(this);
         
-        finishPunch = true;
+        finishAttack = true;
     }
 
     public void redefinePlayer() {
@@ -302,9 +301,9 @@ public class Player extends Sprite {
         fdef.shape = shape;
         b2body.createFixture(fdef).setUserData(this);
 
-        finishPunch = false;
+        finishAttack = false;
 
-        playerPunching = false;
+        playerAttacking = false;
 
 
     }
@@ -350,7 +349,7 @@ public class Player extends Sprite {
         return b2body;
     }
 
-    public void setPlayerPunching(boolean playerPunching) {
-        this.playerPunching = playerPunching;
+    public void setPlayerAttacking(boolean playerAttacking) {
+        this.playerAttacking = playerAttacking;
     }
 }
