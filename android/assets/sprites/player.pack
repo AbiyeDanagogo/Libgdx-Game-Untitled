@@ -3,52 +3,52 @@ player.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-attacking
+attack
   rotate: false
-  xy: 0, 2843
-  size: 5360, 495
-  orig: 5360, 495
+  xy: 0, 3240
+  size: 5400, 540
+  orig: 5400, 540
+  offset: 0, 0
+  index: -1
+die
+  rotate: false
+  xy: 0, 2700
+  size: 5400, 540
+  orig: 5400, 540
+  offset: 0, 0
+  index: -1
+jump
+  rotate: false
+  xy: 0, 2160
+  size: 5400, 540
+  orig: 5400, 540
   offset: 0, 0
   index: -1
 jumpattack
   rotate: false
-  xy: 0, 2321
-  size: 5040, 522
-  orig: 5040, 522
-  offset: 0, 0
-  index: -1
-dying
-  rotate: false
-  xy: 0, 1823
-  size: 4820, 498
-  orig: 4820, 498
-  offset: 0, 0
-  index: -1
-throwing
-  rotate: false
-  xy: 0, 1372
-  size: 3770, 451
-  orig: 3770, 451
-  offset: 0, 0
-  index: -1
-jumping
-  rotate: false
-  xy: 0, 889
-  size: 3620, 483
-  orig: 3620, 483
-  offset: 0, 0
-  index: -1
-running
-  rotate: false
-  xy: 0, 431
-  size: 3630, 458
-  orig: 3630, 458
+  xy: 0, 1620
+  size: 5400, 540
+  orig: 5400, 540
   offset: 0, 0
   index: -1
 jumpthrow
   rotate: false
+  xy: 0, 1080
+  size: 5400, 540
+  orig: 5400, 540
+  offset: 0, 0
+  index: -1
+run
+  rotate: false
+  xy: 0, 540
+  size: 5400, 540
+  orig: 5400, 540
+  offset: 0, 0
+  index: -1
+throw
+  rotate: false
   xy: 0, 0
-  size: 3600, 431
-  orig: 3600, 431
+  size: 5400, 540
+  orig: 5400, 540
   offset: 0, 0
   index: -1
