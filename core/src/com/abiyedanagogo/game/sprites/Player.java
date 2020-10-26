@@ -29,7 +29,7 @@ public class Player extends Sprite {
 
     private Animation<TextureRegion> playerRun;
     private Animation<TextureRegion> playerJump;
-    private Animation<TextureRegion> playerPunchAnimation;
+    private Animation<TextureRegion> playerAttackAnimation;
     private Animation<TextureRegion> playerHitAnimation;
 
     private boolean runningRight;
@@ -40,7 +40,6 @@ public class Player extends Sprite {
     private Hud hud;
 
     private TextureRegion playerStand;
-    private Texture texture;
     private TextureAtlas atlas;
 
     private float stateTime;
@@ -73,33 +72,32 @@ public class Player extends Sprite {
 
         hitSpeed = 2;
 
-        texture = new Texture("player.png");
         atlas = new TextureAtlas("sprites/player.pack");
 
-        playerStand = new TextureRegion(texture, 0,0, 320, 320);
+        playerStand = new TextureRegion(atlas.findRegion("attacking"), 0,0, 536, 495);
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < 10; i++) {
             frames.add(new TextureRegion(atlas.findRegion("running"), i * 363, 0, 363, 458));
         }
         playerRun = new Animation<TextureRegion>(0.1f, frames);
         frames.clear();
 
-        for (int i = 3; i < 5; i++) {
-            frames.add(new TextureRegion(texture, i * 320, 0, 320, 320));
+        for (int i = 0; i < 10; i++) {
+            frames.add(new TextureRegion(atlas.findRegion("jumping"), i * 362, 0, 362, 483));
         }
         playerJump = new Animation<TextureRegion>(0.1f, frames);
         frames.clear();
 
 
-        for (int i = 5; i < 7; i++) {
-            frames.add(new TextureRegion(texture, i * 320, 0, 320, 320));
+        for (int i = 1; i < 10; i++) {
+            frames.add(new TextureRegion(atlas.findRegion("attacking"), i * 536, 0, 536, 495));
         }
-        playerPunchAnimation = new Animation<TextureRegion>(0.1f, frames);
+        playerAttackAnimation = new Animation<TextureRegion>(0.1f, frames);
         frames.clear();
 
-        for (int i = 7; i < 9; i++) {
-            frames.add(new TextureRegion(texture, i * 320, 0, 320, 320));
+        for (int i = 1; i < 3; i++) {
+            frames.add(new TextureRegion(atlas.findRegion("dying"), i * 482, 0, 482, 498));
         }
         playerHitAnimation = new Animation<TextureRegion>(0.5f, frames);
 
@@ -152,7 +150,7 @@ public class Player extends Sprite {
 
         switch (currentState) {
             case PUNCHING:
-                region = playerPunchAnimation.getKeyFrame(stateTime);
+                region = playerAttackAnimation.getKeyFrame(stateTime);
                 break;
             case JUMPING:
                 region = playerJump.getKeyFrame(stateTime);
